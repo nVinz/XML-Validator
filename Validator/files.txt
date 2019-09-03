@@ -1,0 +1,2 @@
+files/xml.xml files/xsd.xsd
+files/xml2.xml files/xsd2.xsd
