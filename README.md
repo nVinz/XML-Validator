@@ -6,7 +6,7 @@
 ### Project
 
 This project contains sources and compiled .jar & .bat files with examples to usage for quick start and validation for your files.
-
+It returns true/false for single xml-xsd bunch and true/false with file names for multimple xml-xsd bunches.
 
 -------------
 ### Usage
@@ -19,20 +19,19 @@ or
 
     java -jar Validator.jar PATH/XML_FILE.xml PATH/XSD_FILE.xsd
 
-+ returns *true*/*false*.
-
 **`Validate.bat`**: 
 
-+ set up:
+set up:
 
     PATH/XML_FILE.xml PATH/XSD_FILE.xsd
     
 or
+
     PATH/files.txt
     
-+ returns *true*/*false*.
-
 ### files.txt set up
+
+Write here paths to all xml and xsd files separated by spaces:
 
     PATH/XML_FILE.xml PATH/XSD_FILE.xsd
     PATH/XML_FILE_2.xml PATH/XSD_FILE_2.xsd
