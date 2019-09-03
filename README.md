@@ -5,7 +5,7 @@
 
 ### Project
 
-This project contains sources and compiled .jar & .bat files with examples to usage for quick start and validation for your files.
+This project contains sources and compiled .jar & .bat files with examples to usage for quick start and validation for your files (You can delete examples if you don't need them).
 It returns true/false for single xml-xsd bunch and true/false with file names for multimple xml-xsd bunches.
 
 -------------
