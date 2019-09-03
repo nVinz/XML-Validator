@@ -21,7 +21,7 @@
 
 **`ValidateAll.bat`**:
 
-set up **`files.txt`**:
++ set up **`files.txt`**:
 
     PATH/XML_FILE.xml PATH/XSD_FILE.xsd
     PATH/XML_FILE_2.xml PATH/XSD_FILE_2.xsd
