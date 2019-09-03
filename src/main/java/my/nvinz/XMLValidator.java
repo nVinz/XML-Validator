@@ -6,19 +6,31 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
 public class XMLValidator {
-    public static String XML_FILE = "";
-    public static String SCHEMA_FILE = "";
+    private static String XML_FILE = "";
+    private static String SCHEMA_FILE = "";
+    private static String ALL_FILES = "";
+    private static Map<String, String> FILE_LINES = new HashMap<>();
 
     public static void main (String[] args) {
         if (getProperties(args)) {
             XMLValidator XMLValidator = new XMLValidator();
-            boolean valid = XMLValidator.validate(XML_FILE, SCHEMA_FILE);
-            System.out.println(valid);
-            return;
+            if (ALL_FILES.equals("")){
+                boolean valid = XMLValidator.validate(XML_FILE, SCHEMA_FILE);
+                System.out.println(valid);
+                return;
+            }
+            else{
+                FILE_LINES.forEach((xml, xsd) -> {
+                    boolean valid = XMLValidator.validate(xml, xsd);
+                    System.out.println("# " + xml + ", " + xsd);
+                    System.out.println(valid);
+                });
+                return;
+            }
         }
         else{
             System.out.println("Invalid arguments");
@@ -39,21 +51,35 @@ public class XMLValidator {
     }
 
     private static boolean getProperties(String[] args){
-        if (args.length == 2 &&
+        if (args.length == 1 &&
+            args[0].contains(".txt")){
+            ALL_FILES = args[0];
+            parseFile(ALL_FILES);
+            return true;
+        }
+        else if (args.length == 2 &&
                 args[0].contains(".xml") &&
                 args[1].contains(".xsd")){
-                XML_FILE = args[0];
-                SCHEMA_FILE = args[1];
-                return true;
+            XML_FILE = args[0];
+            SCHEMA_FILE = args[1];
+            return true;
         }
         else{
             return false;
         }
-        /*XML_FILE = args.length > 0 ? args[0] : XML_FILE;
-        try {
-            SCHEMA_FILE = args.length > 1 ? args[1] : SCHEMA_FILE;
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }*/
+    }
+
+    private static void parseFile(String file){
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                StringTokenizer tokenizer = new StringTokenizer(line, " ");
+                while (tokenizer.hasMoreElements()) {
+                    FILE_LINES.put(tokenizer.nextToken(), tokenizer.nextToken());
+                }
+            }
+        } catch(IOException e) {
+            return;
+        }
     }
 }
