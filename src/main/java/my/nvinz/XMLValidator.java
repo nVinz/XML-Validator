@@ -45,7 +45,14 @@ public class XMLValidator {
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(new File(xmlFile)));
             return true;
-        } catch (SAXException | IOException e) {
+        } catch (FileNotFoundException e){
+            System.out.println("File(s) not found");
+            return false;
+        } catch (IOException e) {
+            System.out.println("File(s) not found");
+            return false;
+        }catch (SAXException e) {
+            System.out.println("# Validation failure: " + e.getMessage());
             return false;
         }
     }
@@ -78,7 +85,10 @@ public class XMLValidator {
                     FILE_LINES.put(tokenizer.nextToken(), tokenizer.nextToken());
                 }
             }
-        } catch(IOException e) {
+        } catch (FileNotFoundException e){
+            System.out.println("File(s) not found");
+            return;
+        }catch(IOException e) {
             return;
         }
     }

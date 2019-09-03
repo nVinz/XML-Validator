@@ -1,0 +1,2 @@
+Examples/files/xml.xml Examples/files/xsd.xsd
+Examples/files/xml2.xml Examples/files/xsd2.xsd

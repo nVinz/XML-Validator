@@ -1,3 +1,5 @@
+@echo off
+
 REM USAGE
 
 REM java -jar Validate.jar PATH/xml_file.xml PATH/xsd.file.xsd
@@ -14,5 +16,5 @@ REM | ...
 REM | PATH/XML_FILE_n.xml PATH/XSD_FILE_n.xsd
 REM |------------------------------
 
-java -jar Validator.jar files.txt
+java -jar Validator.jar Examples/files.txt
 PAUSE

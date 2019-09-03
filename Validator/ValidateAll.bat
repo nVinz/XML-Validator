@@ -1,3 +1,5 @@
+@echo off
+
 REM | USAGE
  
 REM | files.txt |
@@ -8,8 +10,7 @@ REM | ...
 REM | PATH/XML_FILE_n.xml PATH/XSD_FILE_n.xsd
 REM |------------------------------
 
-@echo off
-for /F "tokens=*" %%A in (files.txt) do (
+for /F "tokens=*" %%A in (Examples/files.txt) do (
 	echo # %%A 
 	java -jar Validator.jar %%A
 )
