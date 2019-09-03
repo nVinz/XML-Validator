@@ -89,6 +89,7 @@ public class XMLValidator {
             System.out.println("File(s) not found");
             return;
         }catch(IOException e) {
+            System.out.println("File(s) not found");
             return;
         }
     }
