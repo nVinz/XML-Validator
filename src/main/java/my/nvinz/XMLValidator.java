@@ -52,7 +52,7 @@ public class XMLValidator {
             System.out.println("File(s) not found");
             return false;
         }catch (SAXException e) {
-            System.out.println("# Validation failure: " + e.getMessage());
+            System.out.println("(!) " + e.getMessage());
             return false;
         }
     }
@@ -82,7 +82,11 @@ public class XMLValidator {
             while ((line = br.readLine()) != null) {
                 StringTokenizer tokenizer = new StringTokenizer(line, " ");
                 while (tokenizer.hasMoreElements()) {
-                    FILE_LINES.put(tokenizer.nextToken(), tokenizer.nextToken());
+                    try {
+                        FILE_LINES.put(tokenizer.nextToken(), tokenizer.nextToken());
+                    } catch (NoSuchElementException e) {
+                        System.out.println("(!) " + e);
+                    }
                 }
             }
         } catch (FileNotFoundException e){
