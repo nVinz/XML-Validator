@@ -2,7 +2,7 @@
 <addresses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:noNamespaceSchemaLocation='xsd.xsd'>
 	<address>
-		<name>Joe Tester</names>
+		<name>Joe Tester</name>
 		<street>Baker street 5</street>
 	</address>
 </addresses>

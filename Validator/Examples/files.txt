@@ -1,2 +1,10 @@
-Examples/files/xml.xml Examples/files/xsd.xsd
-Examples/files/xml2.xml Examples/files/xsd2.xsd
+files/xml.xml files/xsd.xsd
+files/xml2.xml files/xsd2.xsd
+files/xml3.xml files/xsd3.xsd
+files/xml4.xml files/xsd4.xsd
+files/xml5.xml files/xsd5.xsd
+files/xml6.xml files/xsd6.xsd
+files/xml7.xml files/xsd7.xsd
+files/xml8.xml files/xsd8.xsd
+files/xml9.xml files/xsd9.xsd
+files/xml10.xml files/xsd10.xsd

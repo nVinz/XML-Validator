@@ -1,15 +1,9 @@
 package my.nvinz;
 
-import org.xml.sax.SAXException;
-import javax.xml.XMLConstants;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 import java.io.*;
 import java.util.*;
 
-public class XMLValidator {
+public class Main {
     private static String XML_FILE = "";
     private static String SCHEMA_FILE = "";
     private static String ALL_FILES = "";
@@ -17,17 +11,15 @@ public class XMLValidator {
 
     public static void main (String[] args) {
         if (getProperties(args)) {
-            XMLValidator XMLValidator = new XMLValidator();
             if (ALL_FILES.equals("")){
-                boolean valid = XMLValidator.validate(XML_FILE, SCHEMA_FILE);
-                System.out.println(valid);
+                Threading thread = new Threading(XML_FILE, SCHEMA_FILE);
+                thread.start();
                 return;
             }
             else{
                 FILE_LINES.forEach((xml, xsd) -> {
-                    boolean valid = XMLValidator.validate(xml, xsd);
-                    System.out.println("# " + xml + ", " + xsd);
-                    System.out.println(valid);
+                    Threading thread = new Threading(xml, xsd);
+                    thread.start();
                 });
                 return;
             }
@@ -35,25 +27,6 @@ public class XMLValidator {
         else{
             System.out.println("Invalid arguments");
             return;
-        }
-    }
-
-    private boolean validate(String xmlFile, String schemaFile) {
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try {
-            Schema schema = schemaFactory.newSchema(new File(schemaFile));
-            Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(new File(xmlFile)));
-            return true;
-        } catch (FileNotFoundException e){
-            System.out.println("File(s) not found");
-            return false;
-        } catch (IOException e) {
-            System.out.println("File(s) not found");
-            return false;
-        }catch (SAXException e) {
-            System.out.println("(!) " + e.getMessage());
-            return false;
         }
     }
 
